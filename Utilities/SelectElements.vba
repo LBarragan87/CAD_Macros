@@ -1,6 +1,6 @@
-Sub PromptInstruction(Mensaje As String)
+Sub PromptInstruction(Message As String)
     'Create Prompt
-    ThisDrawing.Utility.Prompt (Mensaje)
+    ThisDrawing.Utility.Prompt (Message)
     
 End Sub
 Sub DeleteSelectionSets()
@@ -13,11 +13,11 @@ Sub DeleteSelectionSets()
     End If
     
 End Sub
-Function SelectElements(Mensaje, SelectionSetName As String)
+Function SelectElements(Message, SelectionSetName As String)
     
     'Returns SelectionSets
     DeleteSelectionSets
-    PromptInstruction (Mensaje)
+    PromptInstruction (Message)
     Set thisSelectionSet = ThisDrawing.SelectionSets.Add(SelectionSetName)
     With thisSelectionSet
         .SelectOnScreen
