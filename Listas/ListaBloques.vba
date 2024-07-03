@@ -1,4 +1,4 @@
-Sub ListaBloques2025()
+Sub ListaBloques()
     Dim ObjCoord    As Variant
     Set IN0 = SelectElements("Seleccione Bloques", "ListaBloques")
     
