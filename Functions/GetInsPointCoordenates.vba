@@ -9,6 +9,6 @@ Function GetInsPointCoordenates(Element) As Variant
     thisCoordinates(1) = thisInsertionPoint(1)
     thisCoordinates(2) = thisInsertionPoint(2)
     
-    GetInsPointCoordenates = thisCoordinates
+    GetInsPointCoordenates = thisInsertionPoint
     
 End Function
