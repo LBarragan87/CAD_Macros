@@ -1,5 +1,5 @@
 Sub ListaBloques()
-    'Requiere [GetInsPointCoordinates,SelectElements]
+    'Requiere [Functions/GetInsPointCoordinates,Utilities/SelectElements]
     Dim ObjCoord    As Variant
     Set IN0 = SelectElements("Seleccione Bloques", "ListaBloques")
     
