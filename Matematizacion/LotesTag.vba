@@ -6,33 +6,33 @@ Sub AutoMatematizacion()
     
     SelectedElements = ThisDrawing.ModelSpace.Count - 1
     
-    consecutivo = 1
+    Consecutive = 1
     For elemento = 0 To SelectedElements
-        x = ThisDrawing.ModelSpace.Item(elemento).Explode
-        totalSubelementos = UBound(x)
-        subConsecutivo = 1
-        maximoSubelemento = 0
+        ExplotedObject = ThisDrawing.ModelSpace.Item(elemento).Explode
+        totalSubelementos = UBound(ExplotedObject)
+        SubConsecutive = 1
+        MaxLength = 0
         For subElemento = 0 To totalSubelementos
-            nombreSubelemento = x(subElemento).ObjectName
+            nombreSubelemento = ExplotedObject(subElemento).ObjectName
             If nombreSubelemento = "AcDbLine" Then
-                thisLength = x(subElemento).Length
+                thisLength = ExplotedObject(subElemento).Length
             ElseIf nombreSubelemento = "AcDbArc" Then
-                thisLength = x(subElemento).ArcLength
+                thisLength = ExplotedObject(subElemento).ArcLength
             End If
-            x(subElemento).Delete
+            DeleteObject = ExplotedObject(subElemento).Delete
             
-            If thisLength > maximoSubelemento Then
-            maximoSubelemento = thisLength
+            If thisLength > MaxLength Then
+            MaxLength = thisLength
             Else
-            maximoSubelemento = maximoSubelemento
+            MaxLength = MaxLength
             End If
             
-            Debug.Print consecutivo & "\" & subConsecutivo & "\" & thisLength
-            subConsecutivo = subConsecutivo + 1
+            Debug.Print Consecutive & "\" & SubConsecutive & "\" & thisLength
+            SubConsecutive = SubConsecutive + 1
         Next subElemento
-        MaxElemento = maximoSubelemento
-        Debug.Print consecutivo & "\" & MaxElemento & "<<---max"
-        consecutivo = consecutivo + 1
+
+        Debug.Print Consecutive & "\" & MaxLength & "<<---max"
+        Consecutive = Consecutive + 1
     Next elemento
     
 End Sub
