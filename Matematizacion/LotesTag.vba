@@ -4,11 +4,11 @@ Sub AutoMatematizacion()
     'coloca etiqueta de area correspondiente a lote
     'alinea textos segun linea/arco mas largo
     
-    SelectedElements = ThisDrawing.ModelSpace.Count - 1
-    
+    Set SelectedElements = SelectElements("Seleccione Regiones", "ListaRegiones")
+        
     Consecutive = 1
-    For PrincipalElementIndex = 0 To SelectedElements
-        ExplotedObject = ThisDrawing.ModelSpace.Item(elemento).Explode
+    For Each element In SelectedElements
+        ExplotedObject = element.Explode
         SubElementsUBound = UBound(ExplotedObject)
         SubConsecutive = 1
         MaxLength = 0
@@ -33,6 +33,6 @@ Sub AutoMatematizacion()
 
         Debug.Print Consecutive & "\" & MaxLength & "<<---max"
         Consecutive = Consecutive + 1
-    Next PrincipalElementIndex
+    Next
     
 End Sub
