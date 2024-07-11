@@ -7,19 +7,19 @@ Sub AutoMatematizacion()
     SelectedElements = ThisDrawing.ModelSpace.Count - 1
     
     Consecutive = 1
-    For elemento = 0 To SelectedElements
+    For PrincipalElementIndex = 0 To SelectedElements
         ExplotedObject = ThisDrawing.ModelSpace.Item(elemento).Explode
-        totalSubelementos = UBound(ExplotedObject)
+        SubElementsUBound = UBound(ExplotedObject)
         SubConsecutive = 1
         MaxLength = 0
-        For subElemento = 0 To totalSubelementos
-            nombreSubelemento = ExplotedObject(subElemento).ObjectName
-            If nombreSubelemento = "AcDbLine" Then
-                thisLength = ExplotedObject(subElemento).Length
-            ElseIf nombreSubelemento = "AcDbArc" Then
-                thisLength = ExplotedObject(subElemento).ArcLength
+        For SubElementIndex = 0 To SubElementsUBound
+            SubElementType = ExplotedObject(SubElementIndex).ObjectName
+            If SubElementType = "AcDbLine" Then
+                thisLength = ExplotedObject(SubElementIndex).Length
+            ElseIf SubElementType = "AcDbArc" Then
+                thisLength = ExplotedObject(SubElementIndex).ArcLength
             End If
-            DeleteObject = ExplotedObject(subElemento).Delete
+            DeleteObject = ExplotedObject(SubElementIndex).Delete
             
             If thisLength > MaxLength Then
             MaxLength = thisLength
@@ -29,10 +29,10 @@ Sub AutoMatematizacion()
             
             Debug.Print Consecutive & "\" & SubConsecutive & "\" & thisLength
             SubConsecutive = SubConsecutive + 1
-        Next subElemento
+        Next SubElementIndex
 
         Debug.Print Consecutive & "\" & MaxLength & "<<---max"
         Consecutive = Consecutive + 1
-    Next elemento
+    Next PrincipalElementIndex
     
 End Sub
